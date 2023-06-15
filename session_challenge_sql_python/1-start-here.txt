@@ -1,0 +1,8 @@
+We have a large volume of web traffic data in a raw format that we want to analyze by dividing it into different "sessions".
+We consider a pageview to be in a new session if it takes place more than thirty minutes after the previous pageview from the same anon_id
+If a pageview is within thirty minutes of the previous pageview from the same anonymous user, it is in the same session.
+
+1. Write a SQL query to **add** a **`session_id`** column to the **`pageviews`** table that assigns a unique identifier to each session
+2. Write a SQL query to identify the number of sessions that contain a specific URL.
+
+Bonus question: Explain how this logic could be incrementalized for a scheduled data pipeline and the challenges you would face.

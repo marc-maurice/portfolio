@@ -1,0 +1,5 @@
+chatgpt35turbo.py shows a simple example of a simple call to the 3.5 
+
+chatgpt4.py shows us an example of a chatbot with chatgpt3.5 which runs in the terminal.
+
+also, since the api documentation for 3.5 is the same as 4, the scripts are interchangeable.
