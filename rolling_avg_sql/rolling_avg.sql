@@ -1,7 +1,7 @@
 -- Using this dataset, show the SQL query that provides January 31's 
 -- rolling 3 day average of total transaction amount processed per day
 
-CREATE TABLE transactions (
+CREATE or REPLACE TABLE transactions (
   "transaction_time" TIMESTAMP,
   "transaction_amount" FLOAT
 );
@@ -136,14 +136,20 @@ with daily_total as (
         date(tt."transaction_time")
     order by 
         date(tt."transaction_time")
-    )
-select 
-    dt."date",
-    avg(dt."transactions") over (
-        order by dt."date"
-        rows between 2 preceding and current row
-    ) as rolling_3day_avg
-from
-    daily_total dt
-order by
-    dt."date";
+    ),
+
+rolling_3day as (
+    select 
+        dt."date",
+        avg(dt."transactions") over (
+            order by dt."date"
+            rows between 2 preceding and current row
+        ) as rolling_3day_avg
+    from
+        daily_total dt
+    order by
+        dt."date")
+select *
+from rolling_3day
+where rolling_3day."date" = '2021-01-31'
+        ;
