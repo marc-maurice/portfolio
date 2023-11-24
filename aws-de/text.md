@@ -73,4 +73,30 @@ mv moves the contents to your "retail_db" folder.
 
 rm -rf retail_db/.git removes the .git directory, effectively making "retail_db" a regular directory without Git tracking.
 
-echo "retail_db/" >> .gitignore to add to the retail db to git ignore
+if you want to git gignore the db -- > echo "retail_db/" >> .gitignore to add to the retail db to git ignore
+
+### Create s3 Bucket ###
+
+Create a role called AWSS3FullAccess and assign the S3 full access policy
+
+Create s3 bucket
+
+create a replication bucket for cross region fault tolerance using the role AWSS3FullAccess
+
+limit the scope to one filter, prefix retail_db
+
+Go back and change the storage class of the replication file to glacier deep archive
+
+Add lifecycle rules to transfew noncuncurrent versions to Glacier deep archive, then delete peremanantly
+
+practice using the cli to copy local files to a bucket
+
+    create a bucket, copy the files, delete the files, remove the bucket
+
+Create a user using the cli and give the user read only access to s3
+
+aws iam create-user --user-name 'itvsupport1'
+
+aws iam attach-user-policy --user-name 'itvsupport1' --policy-arn 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+
+
